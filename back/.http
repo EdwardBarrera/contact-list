@@ -1,0 +1,30 @@
+GET http://localhost:3000/api/contacts
+
+###
+
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+
+{
+    "name": "Antonia P. Jackson",
+    "address": "3763 Chicago Avenue, Terra Bella, CA 93270",
+    "phone": "559-535-5886",
+    "email": "AntoniaPJackson@jourrapide.com"
+}
+
+###
+
+PUT http://localhost:3000/api/contacts
+Content-Type: application/json
+
+{
+    "id":"6408e2dbb49f82554184e8f1",
+    "name": "Richard M. Abel",
+    "address": "1605 Butternut Lane, Hoffman, IL 62801",
+    "phone": "618-495-7556",
+    "email": "RichardMAbel@teleworm.us"
+}
+
+###
+
+DELETE http://localhost:3000/api/contacts?id=6408e2dbb49f82554184e8f1
