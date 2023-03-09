@@ -18,6 +18,6 @@ export class ApiService {
   }
 
   deleteContact(id:any){
-    return this.http.delete<any>("http://localhost:3000/api/contacts/"+id)
+    return this.http.delete<any>("http://localhost:3000/api/contacts?id="+id)
   }
 }

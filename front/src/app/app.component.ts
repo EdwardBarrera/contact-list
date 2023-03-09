@@ -9,7 +9,7 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements AfterViewInit {
   contacts: IContact[] = []
-  loading=false
+  load=false
   constructor(private api: ApiService) { }
   ngAfterViewInit(): void {
     this.getAllContacts()
@@ -18,6 +18,7 @@ export class AppComponent implements AfterViewInit {
     this.api.getContacts().subscribe({
       next: (res:IContact[]) => {
         this.contacts = res
+        this.load=true
       },
       error: () => {
         alert("Error getting contacts")
@@ -31,6 +32,17 @@ export class AppComponent implements AfterViewInit {
       },
       error:()=>{
         alert("Error updating contact")
+      }
+    })
+  }
+
+  deleteContact(id:string){
+    this.api.deleteContact(id).subscribe({
+      next:()=>{
+        this.getAllContacts()
+      },
+      error:()=>{
+        alert("Error deleting contact")
       }
     })
   }

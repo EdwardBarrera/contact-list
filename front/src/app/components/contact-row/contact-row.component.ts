@@ -13,9 +13,12 @@ export class ContactRowComponent implements OnInit{
   @Input() data!: IContact;
   @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
+
   editMode = false;
   contactForm!: FormGroup;
+
   constructor(private api: ApiService) { }
+
   ngOnInit(): void {
     this.contactForm = new FormGroup({
       name: new FormControl(this.data.name, [Validators.required]),
@@ -31,6 +34,7 @@ export class ContactRowComponent implements OnInit{
   }
 
   onRemove(){
+    this.onDelete.emit(this.data._id)
   }
 
   
