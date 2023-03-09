@@ -1,0 +1,32 @@
+<form class="border border-[#dde0e4] flex text-[#7a7a7a] py-3" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <img src="assets/user-icon.png" class="self-start rounded-full max-w-[50px] shrink-0 mx-3" alt="">
+    <div class="w-full max-w-[200px]x mx-3">
+        <label class="block" for="">Name</label>
+        <input *ngIf="editMode" class="block border-2 outline-none font-bold p-2 border-[#707070] text-[#707070] w-full" [ngClass]="{'!border-[#c90202]':contactForm.get('name')?.invalid}"
+            formControlName="name">
+        <span *ngIf="!editMode" class="block outline-none font-bold text-[#707070] w-full">{{data.name}}</span>
+    </div>
+    <div class="w-full max-w-[200px]x mx-3">
+        <label class="block" for="">Address</label>
+        <input *ngIf="editMode" class="block border-2 outline-none font-bold p-2 border-[#707070] text-[#707070] w-full" [ngClass]="{'!border-[#c90202]':contactForm.get('address')?.invalid}"
+            formControlName="address">
+        <span *ngIf="!editMode" class="block outline-none font-bold text-[#707070] w-full">{{data.address}}</span>
+    </div>
+    <div class="w-full max-w-[200px]x mx-3">
+        <label class="block" for="">Phone Number</label>
+        <input *ngIf="editMode" class="block border-2 outline-none font-bold p-2 border-[#707070] text-[#707070] w-full" [ngClass]="{'!border-[#c90202]':contactForm.get('phone')?.invalid}"
+            type="tel" formControlName="phone">
+        <span *ngIf="!editMode" class="block outline-none font-bold text-[#707070] w-full">{{data.phone}}</span>
+    </div>
+    <div class="w-full max-w-[200px]x mx-3">
+        <label class="block" for="">Email</label>
+        <input *ngIf="editMode" class="block border-2 outline-none font-bold p-2 border-[#707070] text-[#707070] w-full" [ngClass]="{'!border-[#c90202]':contactForm.get('email')?.invalid}"
+            type="email" formControlName="email">
+        <span *ngIf="!editMode" class="block outline-none font-bold text-[#707070] w-full">{{data.email}}</span>
+    </div>
+    <div class="self-center text-right ml-5 mr-3 whitespace-nowrap">
+        <button type="submit" *ngIf="editMode" class="underline mr-2" [ngClass]="{'cursor-not-allowed':contactForm.invalid}">Save</button>
+        <button type="button" *ngIf="!editMode" class="underline mr-2" (click)="editMode=true">Edit</button>
+        <button type="button" class="underline" (click)="onRemove()">Remove</button>
+    </div>
+</form>

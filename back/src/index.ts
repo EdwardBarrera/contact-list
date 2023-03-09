@@ -3,10 +3,15 @@ import ContactRoutes from "./routes/contact.routes"
 import mongoose from "mongoose"
 import mongoSanitize from "express-mongo-sanitize"
 import errorHandler from "./errorHandler"
+import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config()
 
 const app = express()
+
+app.use(cors({
+    origin: 'http://localhost:4200'
+}))
 app.use(express.json())
 app.use(mongoSanitize())
 

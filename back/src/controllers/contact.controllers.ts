@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler"
 import ContactModel from "../models/contact.model"
 
 export const getContacts=asyncHandler(async (req:Request,res:Response)=>{
-    const contacts=await ContactModel.find({}).lean()
+    const contacts=await ContactModel.find({}).select("name address phone email").lean()
     res.send(contacts)
 })
 
@@ -19,7 +19,7 @@ export const createContact=asyncHandler(async (req:Request,res:Response)=>{
 })
 export const updateContact=asyncHandler(async (req:Request,res:Response)=>{
     const data=req.body
-    await ContactModel.findByIdAndUpdate(data.id,{
+    await ContactModel.findByIdAndUpdate(data._id,{
         name:data.name,
         address:data.address,
         phone:data.phone,
