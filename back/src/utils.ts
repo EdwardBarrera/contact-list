@@ -9,12 +9,12 @@ export const validateData = (data: any) => {
   }
   return true
 }
-export let server:MongoMemoryServer;
+export let MMServer:MongoMemoryServer;
 export const connectDB = async () => {
   let dbConnection = process.env["MongoDB"]!
   if (process.env.NODE_ENV === 'test') {
-    server = await MongoMemoryServer.create()
-    dbConnection = await server.getUri()
+    MMServer = await MongoMemoryServer.create()
+    dbConnection = await MMServer.getUri()
   }
 
   mongoose.connect(dbConnection).then(() => console.log("mongodb connected"))
