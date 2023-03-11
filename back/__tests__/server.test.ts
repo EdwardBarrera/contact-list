@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 
 import index from "../src/index";
 import ContactModel from "../src/models/contact.model";
-import { contacts } from "../src/utils";
+import { contacts, MMServer } from "../src/utils";
 
 const { app, server } = index
 const api = request(app)
@@ -74,4 +74,5 @@ beforeAll(async () => {
 afterAll(() => {
     mongoose.connection.close()
     server.close()
+    MMServer.stop()
 })
