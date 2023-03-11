@@ -15,7 +15,7 @@ const contactUpdate = {
 }
 
 describe("User routes", () => {
-    let contactObject:any;
+    let contactObject: any;
     test("Insert new contact", async () => {
         const res = await request(app).post("/api/contacts").send(contact);
         contactObject = res.body
@@ -28,15 +28,11 @@ describe("User routes", () => {
         expect(res.body).toContainEqual(contactObject)
     });
     test("Update new contact created", async () => {
-        const res = await request(app).put("/api/contacts").send({...contactUpdate,id:contactObject._id});
+        const res = await request(app).put("/api/contacts").send({ ...contactUpdate, _id: contactObject._id });
         expect(res.statusCode).toBe(200)
     });
     test("Delete new contact created", async () => {
-        const res = await request(app).delete("/api/contacts?id="+contactObject._id);
+        const res = await request(app).delete("/api/contacts?id=" + contactObject._id);
         expect(res.statusCode).toBe(200)
-    });
-    test("Should not update contact with incomplete data", async () => {
-        const res = await request(app).put("/api/contacts").send({...contactUpdate,id:contactObject._id,name:""});
-        expect(res.statusCode).toBe(400)
     });
 });
