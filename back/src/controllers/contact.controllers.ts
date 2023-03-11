@@ -8,20 +8,6 @@ export const getContacts = asyncHandler(async (req: Request, res: Response) => {
     res.send(contacts)
 })
 
-export const createContact = asyncHandler(async (req: Request, res: Response) => {
-    const data = req.body
-    if (!validateData(data)) {
-        res.status(400)
-        throw new Error("Invalid or incomplete parameters")
-    }
-    const { _id, name, address, phone, email } = await ContactModel.create({
-        name: data.name,
-        address: data.address,
-        phone: data.phone,
-        email: data.email
-    })
-    res.send({ _id, name, address, phone, email })
-})
 export const updateContact = asyncHandler(async (req: Request, res: Response) => {
     const data = req.body
     if (!validateData(data)) {
@@ -42,6 +28,7 @@ export const deleteContact = asyncHandler(async (req: Request, res: Response) =>
         res.status(400)
         throw new Error("Invalid or incomplete parameters")
     }
-    await ContactModel.findByIdAndDelete(req.query.id)
+    const deleted=await ContactModel.findByIdAndDelete(req.query.id)
+    if (deleted === null) res.status(404)
     res.send({})
 })
